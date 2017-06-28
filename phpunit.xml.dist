@@ -12,7 +12,7 @@
          stopOnFailure="false">
 
     <testsuites>
-        <testsuite name="Sha3 Test Suite">
+        <testsuite name="Keccak256 Test Suite">
             <directory>test</directory>
         </testsuite>
     </testsuites>

@@ -1,8 +1,8 @@
 <?php
 
-namespace bb\Sha3;
+namespace Keccak256;
 
-final class Sha3
+final class Keccak256
 {
     const KECCAK_ROUNDS = 24;
     private static $keccakf_rotc = [1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 2, 14, 27, 41, 56, 8, 25, 43, 62, 18, 39, 61, 20, 44];
@@ -295,7 +295,7 @@ final class Sha3
         }
 
         if(self::$test_state === 3){
-            throw new \Exception('Sha3 previous self test failed!');
+            throw new \Exception('Keccak256 previous self test failed!');
         }
 
         $in = '';
@@ -311,7 +311,7 @@ final class Sha3
         }
 
         self::$test_state = 3;
-        throw new \Exception('Sha3 self test failed!');
+        throw new \Exception('Keccak256 self test failed!');
     }
 
     private static function keccak($in_raw, $capacity, $outputlength, $suffix, $raw_output)
@@ -328,7 +328,7 @@ final class Sha3
     public static function hash($in, $mdlen, $raw_output = false)
     {
         if( ! in_array($mdlen, [224, 256, 384, 512], true)) {
-            throw new \Exception('Unsupported Sha3 Hash output size.');
+            throw new \Exception('Unsupported Keccak256 Hash output size.');
         }
 
         return self::keccak($in, $mdlen, $mdlen, 0x06, $raw_output);
@@ -337,7 +337,7 @@ final class Sha3
     public static function shake($in, $security_level, $outlen, $raw_output = false)
     {
         if( ! in_array($security_level, [128, 256], true)) {
-            throw new \Exception('Unsupported Sha3 Shake security level.');
+            throw new \Exception('Unsupported Keccak256 Shake security level.');
         }
 
         return self::keccak($in, $security_level, $outlen, 0x1f, $raw_output);
